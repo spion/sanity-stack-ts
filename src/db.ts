@@ -1,9 +1,9 @@
-import { singleton } from "tsyringe"
-import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js"
+import { drizzle } from "drizzle-orm/postgres-js"
 import postgres from "postgres"
+import { singleton } from "tsyringe"
 
 @singleton()
 export class Database {
-  public queryClient = postgres()
-  public db = drizzle(this.queryClient)
+  public pool = postgres()
+  public SQL = drizzle(this.pool)
 }
