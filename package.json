@@ -1,19 +1,27 @@
 {
-  "name":"sanity-stack",
+  "name": "sanity-stack",
   "dependencies": {
     "@swc-node/register": "^1.6.6",
     "apollo-server": "^3.12.0",
     "class-validator": "^0.14.0",
-    "drizzle-orm": "^0.27.2",
+    "drizzle-orm": "^0.28.0",
     "graphql": "^15.8.0",
     "postgres": "^3.3.5",
     "reflect-metadata": "^0.1.13",
-    "ts-node-dev": "^2.0.0",
     "tsyringe": "^4.8.0",
-    "type-graphql": "^1.1.1",
-    "typescript": "^5.1.6"
+    "type-graphql": "^1.1.1"
   },
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only src/app.ts"
+    "dev":"run-p dev:app dev:servers",
+    "dev:app": "tsnd --respawn --transpile-only src/app.ts",
+    "dev:servers":"docker-compose up -d",
+    "db:generate-migrations":"drizzle-kit generate:pg",
+    "db:migrate":"drizzle-kit push:pg --config=drizzle.config.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "ts-node-dev": "^2.0.0",
+    "drizzle-kit": "^0.19.12",
+    "npm-run-all":"^4.1.5"
   }
 }

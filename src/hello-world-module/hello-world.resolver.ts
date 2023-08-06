@@ -2,7 +2,7 @@ import { injectable } from "tsyringe"
 import { Query, Resolver } from "type-graphql"
 import { ExpressRequest } from "../lib"
 import { Database } from "../db"
-import { Hellos } from "./hello-world-table"
+import { Hellos } from "./hello-world.table"
 import { eq } from "drizzle-orm"
 
 @Resolver()
