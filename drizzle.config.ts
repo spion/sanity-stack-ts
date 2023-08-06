@@ -5,9 +5,9 @@ export default {
   schema: "src/**/*.table.ts",
   out: "./drizzle",
   dbCredentials: {
-    user: "postgres",
-    password: "postgrespassword",
-    database: "postgres",
-    host: "localhost",
+    user: process.env["PGUSER"],
+    password: process.env["PGPASSWORD"],
+    database: process.env["PGDATABASE"]!,
+    host: process.env["PGHOST"]!,
   },
 } satisfies Config
